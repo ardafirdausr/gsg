@@ -27,7 +27,12 @@ Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
         Route::delete('/{id}', ['as' => 'destroy', 'uses' => 'ContentController@destroy']);
     });
 
-    Route::resource('events', 'eventcontroller');
+    Route::group(['prefix' => '/events', 'as' => 'events.'], function(){
+        Route::get('/', ['as' => 'index', 'uses' => 'EventController@index']);
+        Route::get('/create', ['as' => 'create', 'uses' => 'EventController@create']);
+        Route::post('/', ['as' => 'store', 'uses' => 'EventContrller@store']);
+        Route::delete('/{id}', ['as' => 'destroy', 'uses' => 'EventController@destroy']);
+    });
 });
 
 Auth::routes();

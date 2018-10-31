@@ -11,7 +11,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Event</a>
+						<a class="nav-link" href={{route('manage.events.index')}}>Event</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Chat</a>
