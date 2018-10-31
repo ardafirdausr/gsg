@@ -15,10 +15,11 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('photo');
-            $table->string('description');
-            $table->date('created_at');
+            $table->string('title')->nullable(false);
+            $table->string('creator')->nullable(false);
+            $table->string('photo')->nullable(true);
+            $table->string('description')->nullable(false);
+            $table->date('date_created');
         });
     }
 

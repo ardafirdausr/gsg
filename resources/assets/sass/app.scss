@@ -1,1 +1,22 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+// Google-material-icon
+@import "~material-design-icons/iconfont/material-icons.css";
+
+// layout styles
+@import "layout/app.scss";
+
+
+// home styles
+@import "home.scss";
+
+#content{
+	min-height: calc(100vh - 62px);
+}
