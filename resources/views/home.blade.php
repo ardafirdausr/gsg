@@ -1,22 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+<div class="jumbotron homejumbotron">
+    <h1 class="display-4">Galeri Seni Gajahyana</h1>
+    <p class="lead">Kesenian Topeng dan Tarian khas Kota Malang</p>
+    <hr class="my-4">
+    <p>Kunjungi galeri topeng dan lihat pertunjukkan tarian khas Malang</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Lihat Selengkapnya</a>
+    </p>
+</div>
+<div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Kunjungi Pertunjukkan </h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
     </div>
 </div>
