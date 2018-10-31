@@ -29,12 +29,19 @@ class ContentController extends Controller
         //     'photo' => 'required|file|image|mimes:jpeg,bmp,png|size:2048'
         // ]);
         Facades\DB::transaction(function() use($request){
-            $content = Content::create($request->except('photo'));
             $uploadedPhoto = $request->file('photo');
-            $photo = base64_encode($content->id).'.'.$uploadedPhoto->extension();
-            Facades\Storage::disk('contents')->putFileAs('/', $uploadedPhoto, $photo);
-            $photo = Facades\Storage::disk('contents')->url($photo);
-            Content::find($content->id)->update(compact('photo'));
+            $photoName = base64_encode(microtime()).'.'.$uploadedPhoto->extension();
+            $photo = Facades\Storage::disk('contents')->putFileAs('/', $uploadedPhoto, $photoName);
+            if($photo){
+                $photo = Facades\Storage::disk('contents')->url($photoName);
+                $content = Content::create([
+                    'title' => $request->input('title'),
+                    'creator' => $request->input('creator'),
+                    'date_created' => $request->input('date_created'),
+                    'description' => $request->input('description'),
+                    'photo' => $photo
+                ]);
+            }
         });
         return redirect()->route('manage.contents.index');
     }

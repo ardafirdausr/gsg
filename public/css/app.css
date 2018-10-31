@@ -45,6 +45,10 @@
           box-shadow: 2px 2px 3px #eaeaea;
 }
 
+.panel {
+  border-left: 1px solid #bcbcbc;
+}
+
 .homejumbotron {
   width: 100%;
   height: 100%;

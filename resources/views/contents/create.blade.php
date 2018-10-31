@@ -7,8 +7,8 @@
 		<form method="POST" action={{route('manage.contents.store')}} class="needs-validation" novalidate enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div class="form-row">
-				<div class="form-group col-md-6 {{ $errors->has('name') ? ' has-error' : '' }}">
-					<label for="name">Nama Karya</label>
+				<div class="form-group col-md-6 {{ $errors->has('title') ? ' has-error' : '' }}">
+					<label for="title">Nama Karya</label>
 					<input id="title" type="text" class="form-control is-valid" name="title" value="{{ old('title') }}" required autofocus>
 					<div class="invalid-feedback">
 						@if ($errors->has('title'))
@@ -67,8 +67,8 @@
 				</small>
 			</div>
 			<div class="form-group mt-md-4">
-				<button type="submit" class="btn btn-primary">
-					Buat Konten
+				<button type="submit" class="btn btn-primary col-md-12">
+					Simpan
 				</button>
 			</div>
 		</form>

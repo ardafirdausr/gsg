@@ -11,12 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
 
@@ -30,7 +25,7 @@ Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
     Route::group(['prefix' => '/events', 'as' => 'events.'], function(){
         Route::get('/', ['as' => 'index', 'uses' => 'EventController@index']);
         Route::get('/create', ['as' => 'create', 'uses' => 'EventController@create']);
-        Route::post('/', ['as' => 'store', 'uses' => 'EventContrller@store']);
+        Route::post('/', ['as' => 'store', 'uses' => 'EventController@store']);
         Route::delete('/{id}', ['as' => 'destroy', 'uses' => 'EventController@destroy']);
     });
 });

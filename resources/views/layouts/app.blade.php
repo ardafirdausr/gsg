@@ -16,7 +16,7 @@
 <body>
 	<div id="app">
 		<nav id="navbar" class="navbar navbar-expand-md">
-				<div class="container-fluid">
+				<div class="container">
 					{{-- Brand --}}
 					<a class="navbar-brand" href="#">
 						<img src="/assets/GSG-logoText2.svg" width="200px" class="d-inline-block align-top" alt="">
@@ -34,14 +34,20 @@
 								<a class="nav-link" href={{ route('home')}}>Home <span class="sr-only">(current)</span></a>
 							</li>
 							@guest
-							<li class="nav-item {{ Route::currentRouteName() == 'login' ? 'active' : '' }}">
+							<li class="nav-item">
+								<a class="nav-link" href={{ route('login')}}>Konten<span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+									<a class="nav-link" href={{ route('login')}}>Event<span class="sr-only">(current)</span></a>
+								</li>
+							<li class="nav-item">
 								<a class="nav-link" href={{ route('login')}}>Login<span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item {{ Route::currentRouteName() == 'register' ? 'active' : '' }}">
+							<li class="nav-item">
 								<a class="nav-link" href={{ route('register')}}>Register<span class="sr-only">(current)</span></a>
 							</li>
 							@else
-							<li class="nav-item {{ Route::currentRouteName() == 'register' ? 'active' : '' }}">
+							<li class="nav-item">
 								<a class="nav-link" href={{ route('manage.contents.index')}}>Kelola Halaman<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item dropdown">

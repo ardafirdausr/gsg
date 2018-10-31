@@ -19,9 +19,8 @@ class CreateEventsTable extends Migration
             $table->string('photo');
             $table->string('description');
             $table->dateTime('date');
-            $table->geometry('position');
             $table->integer('capacity');
-            $table->date('created_at');
+            $table->timestamp('created_at');
         });
     }
 
