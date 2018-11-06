@@ -17,7 +17,7 @@
 				@foreach($contents as $content)
 				<div class="media col-md-12 my-md-2">
 						<div class="col-md-2">
-								<img class="align-self-center" src={{$content->photo}} width="72" alt="Gambar {{$content->title}}">
+								<img class="align-self-center" src={{$content->photo}} width="100%" alt="Gambar {{$content->title}}">
 						</div>
 						<div class="media-body col-md-8">
 							<h5 class="mt-0">{{$content->title}}</h5>

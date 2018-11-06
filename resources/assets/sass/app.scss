@@ -10,10 +10,17 @@
 // Google-material-icon
 @import "~material-design-icons/iconfont/material-icons.css";
 
+//auth style
+@import "auth/login.scss";
 // layout styles
 @import "layouts/app.scss";
 @import "layouts/admin.scss";
 
+//chats style
+@import "chats/index.scss";
+
+//events style
+@import "events/create.scss";
 
 // home styles
 @import "home.scss";

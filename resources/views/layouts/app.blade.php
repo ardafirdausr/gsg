@@ -30,21 +30,15 @@
 					{{-- Navigation Item --}}
 					<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 						<ul class="navbar-nav">
+							@guest
 							<li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" >
 								<a class="nav-link" href={{ route('home')}}>Home <span class="sr-only">(current)</span></a>
 							</li>
-							@guest
 							<li class="nav-item">
 								<a class="nav-link" href={{ route('login')}}>Konten<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
 									<a class="nav-link" href={{ route('login')}}>Event<span class="sr-only">(current)</span></a>
-								</li>
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('login')}}>Login<span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('register')}}>Register<span class="sr-only">(current)</span></a>
 							</li>
 							@else
 							<li class="nav-item">

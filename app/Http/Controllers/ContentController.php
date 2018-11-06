@@ -24,7 +24,7 @@ class ContentController extends Controller
         // $validatedRequest = $request->validate([
         //     'title' => 'required|string',
         //     'creator' => 'required|string',
-        //     'created' => 'required|date',
+        //     'date_created' => 'required|date',
         //     'description' => 'required|string',
         //     'photo' => 'required|file|image|mimes:jpeg,bmp,png|size:2048'
         // ]);

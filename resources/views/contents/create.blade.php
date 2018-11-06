@@ -52,19 +52,27 @@
 					@endif
 				</div>
 			</div>
-			<div class="custom-file {{ $errors->has('photo') ? ' has-error' : '' }} mt-md-3">
-				<label class="custom-file-label" for="validatedCustomFile">Foto Karya</label>
-				<input type="file" class="custom-file-input" id="photo" name="photo" required>
-				<div class="invalid-feedback">
-					@if ($errors->has('photo'))
-						{{ $errors->first('photo') }}
-					@else
-						Foto tidak boleh kosong
-					@endif
+			<div class="form-group">
+				<label for="inputPhoto">Foto Karya</label>
+				<div id="uploadPhoto">
+					<div class="custom-file {{ $errors->has('photo') ? ' has-error' : '' }} mt-md-3">
+						<label  id="filename" class="custom-file-label" for="validatedCustomFile"></label>
+						<input id="imgInp" type="file" class="custom-file-input" id="photo" name="photo" required>
+						<div class="invalid-feedback">
+							@if ($errors->has('photo'))
+							{{ $errors->first('photo') }}
+							@else
+							Foto tidak boleh kosong
+							@endif
+						</div>
+						<div id="img-upload-conteiner" class="my-md-3">
+							<img id='img-upload'/>
+						</div>
+						<small id="photoHelpBlock" class="form-text text-muted">
+							Foto yang yang dipilih berformat .jpg, .png, .jpeg, dengan kapasitas kurang dari 2MB
+						</small>
+					</div>
 				</div>
-				<small id="photoHelpBlock" class="form-text text-muted">
-						Foto yang yang dipilih berformat .jpg, .png, .jpeg, dengan kapasitas kurang dari 2MB
-				</small>
 			</div>
 			<div class="form-group mt-md-4">
 				<button type="submit" class="btn btn-primary col-md-12">
