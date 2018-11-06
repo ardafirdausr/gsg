@@ -31,14 +31,14 @@
 					<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 						<ul class="navbar-nav">
 							<li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" >
-								<a class="nav-link" href={{ route('home')}}>Home <span class="sr-only">(current)</span></a>
+								<a class="nav-link" href={{ route('guest.home')}}>Home <span class="sr-only">(current)</span></a>
 							</li>
 							@guest
 							<li class="nav-item">
-								<a class="nav-link" href={{ route('login')}}>Konten<span class="sr-only">(current)</span></a>
+								<a class="nav-link" href={{ route('guest.contents')}}>Konten<span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-									<a class="nav-link" href={{ route('login')}}>Event<span class="sr-only">(current)</span></a>
+									<a class="nav-link" href={{ route('guest.events')}}>Event<span class="sr-only">(current)</span></a>
 								</li>
 							<li class="nav-item">
 								<a class="nav-link" href={{ route('login')}}>Login<span class="sr-only">(current)</span></a>

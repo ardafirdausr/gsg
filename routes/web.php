@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::group(['as' => 'guest.'], function(){
+    Route::get('/', ['as' => 'home', 'uses' => 'GuestController@showHome']);
+    Route::get('/konten', ['as' => 'contents', 'uses' => 'GuestController@showContents']);
+    Route::get('/event', ['as' => 'events', 'uses' => 'GuestController@showEvents']);
+    Route::get('/event/{id}/{order}', ['as' => '', 'uses' => 'GuestController@showEvents']);
+    Route::get('/order/{id}', ['as' => '', 'uses' => 'GuestController@showEvents']);
+});
 
 Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
 
