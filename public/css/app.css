@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -40,30 +40,5 @@
   -webkit-font-feature-settings: 'liga';
           font-feature-settings: 'liga';
 }
-#navbar {
-  -webkit-box-shadow: 2px 2px 3px #eaeaea;
-          box-shadow: 2px 2px 3px #eaeaea;
-}
 
-.panel {
-  border-left: 1px solid #bcbcbc;
-}
-
-.homejumbotron {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  background-image: url("/assets/home/cover.jpg");
-  -webkit-backdrop-filter: brightness(50%);
-          backdrop-filter: brightness(50%);
-  background-size: cover;
-}
-
-.homejumbotron > * {
-  color: white;
-}
-
-#content {
-  min-height: calc(100vh - 62px);
-}
 

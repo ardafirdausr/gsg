@@ -14,10 +14,17 @@ class CreateAudiencesTable extends Migration
     public function up()
     {
         Schema::create('audiences', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('identity');
+            $table->string('email');
+            $table->string('name');
+            $table->string('phone');
             $table->integer('event_id')->unsigned();
-            $table->string('guest_id');
-            $table->string('position');
-            $table->primary(['event_id', 'guest_id']);
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('events')
+                ->onDelete('cascade');
+            $table->unique(['identity', 'event_id']);
         });
     }
 

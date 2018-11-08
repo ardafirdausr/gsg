@@ -24,6 +24,11 @@
 				</div>
 			</div>
 		</div>
+		<style>
+		.panel{
+			border-left: 1px solid #bcbcbc;
+		}
+		</style>
 	@else
 		{{redirect()->route('login')}}
 	@endif
