@@ -3,7 +3,7 @@
 @section('content')
 <div class="container w-100 h-100">
 	<div class="row w-100 h-100 justify-content-center align-items-center">
-		<div class="col-md-5 rounded shadow">
+		<div class="col-md-6 rounded shadow">
 			<div class="my-md-3 ml-md-3 h4 ">Login</div>
 			<form class="form-horizontal" method="POST" action="{{ route('login') }} ">
 				{{ csrf_field() }}
@@ -48,7 +48,8 @@
 						</a> --}}
 					</div>
 				</div>
-			</div>
-	</form>
+			</form>
+		</div>
+	</div>
 </div>
 @endsection

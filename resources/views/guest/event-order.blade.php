@@ -10,7 +10,13 @@
 					<hr>
 					<p class="mb-0">
 						Untuk mencetak tiket anda silahkan tekan tombol
-						<span class="btn btn-primary btn-sm float-right">Cetak</span>
+						<a
+							class="btn btn-primary btn-sm"
+							role="button"
+							href={{route('guest.ticket-event-order', ['id' => base64_encode($eventOrder->id)])}}
+							>
+							Cetak
+						</a>
 					</p>
 				</div>
 			</div>

@@ -1,10 +1,13 @@
 <div class="container p-md-3">
 		<div class="row">
 			<div class="col-md-12 mb-md-4">
-				<img src="/assets/GSG-logoText.svg" alt="Galeri Seni Gajayana" width="20%">
-				<div class="h3">Tiket Pertunjukkan</div>
+				<div class="row align-items-center">
+					<img src="/assets/GSG-logoText.svg" alt="Galeri Seni Gajayana" width="20%">
+					<div class="h3 ml-md-5">Tiket Pertunjukkan</div>
+				</div>
 			</div>
 			<div class="col-md-12">
+				<hr class="my-4">
 				<table class="table table-borderless">
 					<tbody>
 						<tr>

@@ -35,10 +35,15 @@ class GuestController extends Controller{
 
     public function showEventOrder($encodedOrderId){
         $id = base64_decode($encodedOrderId);
-        $eventOrder = Models\Audience::find($id)->with('event')->first();
+        $eventOrder = Models\Audience::with('event')->find($id);
+        return view('guest.event-order', compact('eventOrder'));
+    }
+
+    public function showTicketEventOrder($encodedOrderId){
+        $id = base64_decode($encodedOrderId);
+        $eventOrder = Models\Audience::with('event')->find($id);
         $pdf = \PDF::loadView('guest.orderTemplate', compact('eventOrder'));
         return $pdf->stream("tiket.pdf");
-        return view('guest.event-order', compact('eventOrder'));
     }
 
     public function createEventOrder($id){

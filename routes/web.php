@@ -20,6 +20,7 @@ Route::group(['as' => 'guest.'], function(){
     Route::get('/events/{id}/order', ['as' => 'create-event-order', 'uses' => 'GuestController@createEventOrder']);
     Route::post('/events/{id}/order', ['as' => 'store-event-order', 'uses' => 'GuestController@storeEventOrder']);
     Route::get('/events/orders/{encodedOrderId}', ['as' => 'event-order', 'uses' => 'GuestController@showEventOrder']);
+    Route::get('/events/orders/ticket/{encodedOrderId}', ['as' => 'ticket-event-order', 'uses' => 'GuestController@showTicketEventOrder']);
 });
 
 Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
