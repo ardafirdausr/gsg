@@ -106,5 +106,39 @@
 		</form>
 	</div>
 </div>
+<style>
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	// filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+#img-upload-conteiner{
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #eaeaea;
+	min-height: 200px;
+}
+#img-upload{
+		width: 100%;
+}
+</style>
 @endsection
 
