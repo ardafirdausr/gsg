@@ -14,8 +14,9 @@ class CreateGuestsTable extends Migration
     public function up()
     {
         Schema::create('guests', function (Blueprint $table) {
-            $table->ipAddress('ip')->primary();
-            $table->string('identity');
+            $table->ipAddress('email')->primary();
+            $table->string('ip');
+            $table->string('name');
             $table->dateTime('last_access');
         });
     }

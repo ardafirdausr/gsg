@@ -15,69 +15,22 @@
 </head>
 <body>
 	<div id="app">
-		<nav id="navbar" class="navbar navbar-expand-md">
-				<div class="container">
-					{{-- Brand --}}
-					<a class="navbar-brand" href="#">
-						<img src="/assets/GSG-logoText2.svg" width="200px" class="d-inline-block align-top" alt="">
-					</a>
-
-					{{-- Collapse Button --}}
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-
-					{{-- Navigation Item --}}
-					<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-						<ul class="navbar-nav">
-							<li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" >
-								<a class="nav-link" href={{ route('guest.home')}}>Home <span class="sr-only">(current)</span></a>
-							</li>
-							@guest
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('guest.contents')}}>Konten<span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-									<a class="nav-link" href={{ route('guest.events')}}>Event<span class="sr-only">(current)</span></a>
-								</li>
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('login')}}>Login<span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('register')}}>Register<span class="sr-only">(current)</span></a>
-							</li>
-							@else
-							<li class="nav-item">
-								<a class="nav-link" href={{ route('manage.contents.index')}}>Kelola Halaman<span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{{auth()->user()->name}}
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">Profil</a>
-									<a class="dropdown-item" href="#">Ubah Password</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="{{ route('logout') }}"
-										onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-										Logout
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											{{ csrf_field() }}
-									</form>
-								</div>
-							</li>
-							@endguest
-						</ul>
-					</div>
-				</div>
-		</nav>
-		<div id="content">
+		@include('layouts.header')
+		<section id="content">
 			@yield('content')
-		</div>
+		</section>
+		@include('layouts.footer')
 	</div>
 
 	<!-- Scripts -->
-	<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
+<style>
+#content{
+	min-height: calc(100vh - 62px);
+}
+#navbar{
+	box-shadow: 2px 2px 3px #eaeaea;
+}
+</style>
 </html>

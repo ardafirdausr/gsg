@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->string('title')->nullable(false);
             $table->string('creator')->nullable(false);
             $table->string('photo')->nullable(true);
-            $table->string('description')->nullable(false);
+            $table->string('description', 255)->nullable(false);
             $table->date('date_created');
         });
     }
