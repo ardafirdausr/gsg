@@ -15,7 +15,7 @@
 							<a class="nav-link {{str_contains(Route::currentRouteName(), 'events') == 1 ? 'active' : ''}}" href={{route('manage.events.index')}}>Event</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{str_contains(Route::currentRouteName(), 'chats') == 1 ? 'active' : ''}}" href="#">Chat</a>
+							<a class="nav-link {{str_contains(Route::currentRouteName(), 'chats') == 1 ? 'active' : ''}}" href={{route('manage.chats.index')}}>Chat</a>
 						</li>
 					</ul>
 				</div>

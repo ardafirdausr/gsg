@@ -37,6 +37,10 @@ Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
         Route::post('/', ['as' => 'store', 'uses' => 'EventController@store']);
         Route::delete('/{id}', ['as' => 'destroy', 'uses' => 'EventController@destroy']);
     });
+
+    Route::group(['prefix' => '/chats', 'as' => 'chats.'], function(){
+        Route::get('/', ['as' => 'index', 'uses' => 'ChatController@index']);
+    });
 });
 
 Auth::routes();

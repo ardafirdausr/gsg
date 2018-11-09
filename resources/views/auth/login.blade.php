@@ -48,8 +48,7 @@
 						</a> --}}
 					</div>
 				</div>
-			</form>
-		</div>
-	</div>
+			</div>
+	</form>
 </div>
 @endsection
