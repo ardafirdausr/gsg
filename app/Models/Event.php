@@ -13,4 +13,8 @@ class Event extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public function audiences(){
+        return $this->hasMany(Audience::class, 'event_id', 'id');
+    }
 }

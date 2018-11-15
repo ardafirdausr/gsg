@@ -29,8 +29,4 @@ class ChatController extends Controller
         }
         return 'chat failed to send';
     }
-
-    public function sendChatToGuest(){
-
-    }
 }
