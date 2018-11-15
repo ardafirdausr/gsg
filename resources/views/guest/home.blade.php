@@ -18,6 +18,12 @@
 		</div>
 	</div>
 </div>
+<script>
+	Echo.channel('messages')
+    .listen('.receiveMessage', (message) => {
+        alert(message.message);
+	});
+</script>
 <style>
     .homejumbotron {
 

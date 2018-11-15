@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>{{ config('app.name', 'Galeri Seni Gajahyana') }}</title>
-
+	<script src="{{ asset('js/app.js') }}"></script>
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -19,11 +19,12 @@
 		<section id="content">
 			@yield('content')
 		</section>
+		@guest
+			@include('guest.chats.chat-panel')
+		@endguest
 		@include('layouts.footer')
 	</div>
-
 	<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
 </body>
 <style>
 #content{

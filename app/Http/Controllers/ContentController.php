@@ -8,18 +8,18 @@ use Illuminate\Support\Facades;
 
 class ContentController extends Controller
 {
-    public function index()
+    public function showAllContents()
     {
         $contents = Content::get();
-        return view('contents.index', compact('contents'));
+        return view('manage.contents.contents', compact('contents'));
     }
 
-    public function create()
+    public function showCreateContentForm()
     {
-        return view('contents.create');
+        return view('manage.contents.create-content-form');
     }
 
-    public function store(Request $request)
+    public function storeContent(Request $request)
     {
         // $validatedRequest = $request->validate([
         //     'title' => 'required|string',
@@ -46,12 +46,7 @@ class ContentController extends Controller
         return redirect()->route('manage.contents.index');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function destroy($id)
+    public function destroyContent($id)
     {
         Content::find($id)->delete();
         return redirect()->route('manage.contents.index');

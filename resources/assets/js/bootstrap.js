@@ -49,11 +49,21 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'd31287daa77dc1cbdb10',
+    cluster: 'ap1',
+    encrypted: true
+});
+
+// Redis Implementation
+// window.io = require('socket.io-client');
 
 // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ':6001'
 // });

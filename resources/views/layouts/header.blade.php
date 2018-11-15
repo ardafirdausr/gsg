@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-expand-md">
+<nav id="navbar" class="navbar navbar-expand-md" style="z-index: 1">
 		<div class="container">
 			{{-- Brand --}}
 			<a class="navbar-brand" href={{route('guest.home')}}>
@@ -13,10 +13,10 @@
 			{{-- Navigation Item --}}
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 				<ul class="navbar-nav">
+					@guest
 					<li class="nav-item {{ Route::currentRouteName() === 'guest.home' ? 'active' : '' }}" >
 						<a class="nav-link" href={{ route('guest.home')}}>Home <span class="sr-only">(current)</span></a>
 					</li>
-					@guest
 					<li class="nav-item {{ Route::currentRouteName() === 'guest.contents' ? 'active' : '' }}">
 						<a class="nav-link" href={{ route('guest.contents')}}>Konten<span class="sr-only">(current)</span></a>
 					</li>
@@ -27,7 +27,15 @@
 					<li class="nav-item">
 						<a class="nav-link" href={{ route('manage.contents.index')}}>Kelola Halaman<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item dropdown">
+					<li>
+						<a class="nav-link" href={{ route('logout')}} style="color: deeppink" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+							Logout
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								{{ csrf_field() }}
+						</form>
+					</li>
+					{{-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							{{auth()->user()->name}}
 						</a>
@@ -43,9 +51,15 @@
 									{{ csrf_field() }}
 							</form>
 						</div>
-					</li>
+					</li> --}}
 					@endguest
 				</ul>
 			</div>
 		</div>
 </nav>
+<script>
+	function logout(){
+		event.preventDefault();
+		window.location()
+	}
+</script>

@@ -9,46 +9,56 @@ use App\Models;
 
 class GuestController extends Controller{
 
+    public function connectChat(Request $request){
+        session([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ]);
+        return response('connected')
+            ->cookie('chat-email', $request->input('email'))
+            ->cookie('chat-name', $request->input('name'));
+    }
+
     public function showHome(){
         return view('guest.home');
     }
 
-    public function showContents(){
+    public function showAllContents(){
         $contents = Models\Content::all();
-        return view('guest.contents', compact('contents'));
+        return view('guest.contents.contents', compact('contents'));
     }
 
     public function showContent($id){
         $content = Models\Content::find($id);
-        return view('guest.content-detail', compact('content'));
+        return view('guest.contents.content-detail', compact('content'));
     }
 
-    public function showEvents(){
+    public function showAllEvents(){
         $events = Models\Event::all();
-        return view('guest.events', compact('events'));
+        return view('guest.events.events', compact('events'));
     }
 
     public function showEvent($id){
         $event = Models\Event::find($id);
-        return view('guest.event-detail', compact('event'));
+        return view('guest.events.event-detail', compact('event'));
     }
 
     public function showEventOrder($encodedOrderId){
         $id = base64_decode($encodedOrderId);
         $eventOrder = Models\Audience::with('event')->find($id);
-        return view('guest.event-order', compact('eventOrder'));
+        return view('guest.events.event-order', compact('eventOrder'));
     }
 
     public function showTicketEventOrder($encodedOrderId){
         $id = base64_decode($encodedOrderId);
         $eventOrder = Models\Audience::with('event')->find($id);
-        $pdf = \PDF::loadView('guest.orderTemplate', compact('eventOrder'));
+        $pdf = \PDF::loadView('guest.events.orderTemplate', compact('eventOrder'));
         return $pdf->stream("tiket.pdf");
     }
 
     public function createEventOrder($id){
         $event = Models\Event::find($id);
-        return view('guest.create-event-order', compact('event'));
+        return view('guest.events.create-event-order', compact('event'));
     }
 
     public function storeEventOrder(Request $request, $id){
@@ -79,14 +89,14 @@ class GuestController extends Controller{
                     'identity' => 'Nomor Identitas sudah terdaftar untuk event ini'
                 ];
                 Facades\DB::rollback();
-                return view('guest.create-event-order', compact(['event', 'errors']));
+                return view('guest.events.create-event-order', compact(['event', 'errors']));
             }
         }
         else{
             $errors = [
                 'global' => 'Kapasitas Sudah Penuh'
             ];
-            return view('guest.create-event-order', compact(['event', 'error']));
+            return view('guest.events.create-event-order', compact(['event', 'error']));
         }
     }
 }

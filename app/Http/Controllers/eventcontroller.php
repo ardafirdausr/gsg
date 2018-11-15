@@ -9,18 +9,18 @@ use App\Models\Event;
 class EventController extends Controller
 {
 
-    public function index()
+    public function showAllEvents()
     {
         $events = Event::all();
-        return view('events.index', compact('events'));
+        return view('manage.events.events', compact('events'));
     }
 
-    public function create()
+    public function showCreateEventForm()
     {
-        return view('events.create');
+        return view('manage.events.create-event-form');
     }
 
-    public function store(Request $request)
+    public function storeEvent(Request $request)
     {
         // $validatedRequest = $request->validate([
         //     'title' => 'required|string',
@@ -50,7 +50,7 @@ class EventController extends Controller
         return redirect()->route('manage.events.index');
     }
 
-    public function destroy($id)
+    public function destroyEvent($id)
     {
         Event::find($id)->delete();
         return redirect()->route('manage.events.index');
