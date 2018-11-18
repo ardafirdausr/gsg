@@ -16,10 +16,10 @@
 			<div class="row no-gutters">
 				@foreach($contents as $content)
 				<div class="media col-md-12 my-md-2">
-						<div class="col-md-2">
+						<div class="col-md-4">
 								<img class="align-self-center" src={{$content->photo}} width="100%" alt="Gambar {{$content->title}}">
 						</div>
-						<div class="media-body col-md-8">
+						<div class="media-body col-md-6">
 							<h5 class="mt-0">{{$content->title}}</h5>
 							<div class="d-flex flex-row justify-content-between my-md-2">
 								<small class="text-muted float-left"><b class="pr-md-1">Pencipta:</b> {{$content->creator}}</small>

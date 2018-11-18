@@ -1,14 +1,12 @@
 <div class="chat-panel-container">
 	<div id="chat-panel-main" class="chat-panel-main shadow">
 		<div class="chat-container">
-			<div class="message-history">
-				<div id="chat-messages" class="chat-messages">
-					<div class="incoming-message">
-						<img src="https://ptetutorials.com/images/user-profile.png" alt="admin">
-						<div class="received-message">
-							<p>Hallo. Ada Yang Bisa Saya Bantu ? </p>
-							<span class="time-date">{{date('d M | h:i')}}</span></div>
-					</div>
+			<div id="message-history" class="message-history">
+				<div class="incoming-message">
+					<img src="https://ptetutorials.com/images/user-profile.png" alt="admin">
+					<div class="received-message">
+						<p>Hallo. Ada Yang Bisa Saya Bantu ? </p>
+						<span class="time-date">{{date('d M | h:i')}}</span></div>
 				</div>
 			</div>
 			<div class="type-message">
@@ -91,8 +89,8 @@
 		var message = $('#chat-message').val();
 		var tempId = new Date().getTime();
 		var chat = { id: tempId, message: message };
-		$('#chat-messages').append(getOutgoingChatTemplate(chat));
-		$("#chat-messages").animate({ scrollTop: document.getElementById('chat-messages').scrollHeight }, "slow");
+		$('#message-history').append(getOutgoingChatTemplate(chat));
+		$("#message-history").animate({ scrollTop: document.getElementById('message-history').scrollHeight }, "slow");
 		$('#message-' + tempId).fadeIn(200);
 		$('#chat-message').val('');
 		$.ajax({
@@ -147,8 +145,8 @@
 	Echo.channel('chat.{{Session::get("email")}}')
 		.listen('.sendChat', function(data){
 			var chat = data.chat;
-			$('#chat-messages').append(getIncomingChatTemplate(chat));
-			$("#chat-messages").animate({ scrollTop: document.getElementById('chat-messages').scrollHeight }, "slow");
+			$('#message-history').append(getIncomingChatTemplate(chat));
+			$("#message-history").animate({ scrollTop: document.getElementById('message-history').scrollHeight }, "slow");
 			$('#message-' + chat.id).fadeIn(200);
 		});
 
@@ -246,8 +244,8 @@
 		height: auto;
 		flex-grow: 1;
 		overflow-y: scroll;
-		display: flex;
-		flex-direction: column;
+		/* display: flex;
+		flex-direction: column;  */
 		padding: 16px 0px 16px 16px;
 	}
 	.incoming-message{
@@ -316,7 +314,6 @@
 	.chat-message{
 		font-size: 14px;
 		resize: none;
-		overflow-y: auto;
 	}
 	.input-container{
 		padding: 8px;
