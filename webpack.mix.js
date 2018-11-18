@@ -1,3 +1,4 @@
+let path = require('path');
 let mix = require('laravel-mix');
 
 /*
