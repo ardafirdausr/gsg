@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -6,4 +5,26 @@
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+// Google-material-icon
+@import "~material-design-icons/iconfont/material-icons.css";
+
+//auth style
+@import "auth/login.scss";
+// layout styles
+@import "layouts/app.scss";
+@import "layouts/admin.scss";
+
+//chats style
+@import "chats/index.scss";
+
+//events style
+@import "events/create.scss";
+
+// home styles
+@import "home.scss";
+
+#content{
+	min-height: calc(100vh - 62px);
+}
