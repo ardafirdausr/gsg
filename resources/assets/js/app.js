@@ -7,4 +7,3 @@
 
 require('./bootstrap');
 require('./formValidation');
-require('./uploadedPhoto');

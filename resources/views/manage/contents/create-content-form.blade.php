@@ -57,7 +57,11 @@
 				<div id="uploadPhoto">
 					<div class="custom-file {{ $errors->has('photo') ? ' has-error' : '' }} mt-md-3">
 						<label  id="filename" class="custom-file-label" for="validatedCustomFile"></label>
-						<input id="imgInp" type="file" class="custom-file-input" id="photo" name="photo" required>
+						<input
+							type="file"
+							class="custom-file-input"
+							id="photo" name="photo"
+							required>
 						<div class="invalid-feedback">
 							@if ($errors->has('photo'))
 							{{ $errors->first('photo') }}
@@ -65,7 +69,7 @@
 							Foto tidak boleh kosong
 							@endif
 						</div>
-						<div id="img-upload-conteiner" class="my-md-3">
+						<div id="img-upload-container" class="my-md-3">
 							<img id='img-upload'/>
 						</div>
 						<small id="photoHelpBlock" class="form-text text-muted">
@@ -103,7 +107,7 @@
 	display: block;
 }
 
-#img-upload-conteiner{
+#img-upload-container{
 	width: 100%;
 	padding: 5px;
 	display: flex;
@@ -114,11 +118,33 @@
 }
 #img-upload{
 	width: 100%;
+	object-fit: cover;
 }
-#imgInp{
+#photo{
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
 </style>
+<script>
+function showPreview(input) {
+		console.log(input.files);
+		if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+						$('#filename').text(input.files[0].name);
+						$('#img-upload').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+		}
+		else{
+			$('#filename').text("");
+			$('#img-upload').attr('src', "");
+		}
+}
+
+$("#photo").on('change', function(){
+		showPreview(this);
+});
+</script>
 @endsection
 
