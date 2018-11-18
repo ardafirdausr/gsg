@@ -21,7 +21,11 @@
 						</div>
 						<div class="media-body col-md-8">
 							<h5 class="mt-0">{{$content->title}}</h5>
-							<p>{{$content->description}}</p>
+							<div class="d-flex flex-row justify-content-between my-md-2">
+								<small class="text-muted float-left"><b class="pr-md-1">Pencipta:</b> {{$content->creator}}</small>
+								<small class="text-muted float-right"><b class="pr-md-1">Tanggal Pembuatan: </b>{{date('d M Y', strtotime($content->date_created))}}</small>
+							</div>
+							<p class="clear-both">{{$content->description}}</p>
 						</div>
 						<div class="col-md-2">
 							<form action={{ route('manage.contents.destroy', ['id' => $content->id, '_method' => 'delete']) }} method="post">

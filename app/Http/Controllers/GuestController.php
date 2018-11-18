@@ -15,8 +15,9 @@ class GuestController extends Controller{
             'email' => $request->input('email')
         ]);
         return response('connected')
-            ->cookie('chat-email', $request->input('email'))
-            ->cookie('chat-name', $request->input('name'));
+            ->cookie('name', $request->input('name'))
+            ->cookie('email', $request->input('email'))
+            ->cookie('chat-connected', true, null, null, null, false, false);
     }
 
     public function showHome(){

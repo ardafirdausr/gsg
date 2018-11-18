@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class SendChat
+class SendChat implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,7 +21,7 @@ class SendChat
     }
 
     public function broadcastOn(){
-        return new PrivateChannel('chat.'.$this->chat->to);
+        return (new Channel('chat.'.$this->chat->to));
     }
 
     public function broadcastAs(){

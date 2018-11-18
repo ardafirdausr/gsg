@@ -14,19 +14,7 @@
 use App\Events\ReceiveMessage;
 use App\Events\SendChatToAdmin;
 
-Route::get('test', function(){
-    return view('test');
-});
-
-Route::get('fire', function(){
-    event(new ReceiveMessage('COBA WOI'));
-});
-
-Route::get('fire2', function(){
-    event(new SendChatToAdmin(['message' => 'tes123']));
-});
-
-Route::post('send.chat', ['as' => 'send-chat', 'uses' => 'ChatController@sendChat']);
+Route::post('/chats/send', ['as' => 'send-chat', 'uses' => 'ChatController@sendChat']);
 
 Route::group(['as' => 'guest.'], function(){
     Route::get('/', ['as' => 'home', 'uses' => 'GuestController@showHome']);
@@ -41,7 +29,7 @@ Route::group(['as' => 'guest.'], function(){
     Route::post('/chats/connect', ['as' => 'chat-connect', 'uses' => 'GuestController@connectChat']);
 });
 
-Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
+Route::group(['as' => 'manage.', 'prefix' => '/manage', 'middleware' => ['auth']], function(){
 
     Route::group(['prefix' => '/contents', 'as' => 'contents.'], function(){
         Route::get('/', ['as' => 'index', 'uses' => 'ContentController@showAllContents']);
@@ -59,6 +47,7 @@ Route::group(['prefix' => '/manage', 'as' => 'manage.'], function(){
 
     Route::group(['prefix' => '/chats', 'as' => 'chats.'], function(){
         Route::get('/', ['as' => 'index', 'uses' => 'ChatController@index']);
+        Route::get('/{email}', ['as' => 'email', 'uses' => 'ChatController@getChatByEmail']);
     });
 });
 
