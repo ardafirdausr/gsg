@@ -2,7 +2,7 @@
 
 @section('content')
 	@if(auth()->user())
-		<div class="container">
+		<div class="container  py-md-3">
 			<div class="row my-md-5">
 				<div class="col-md-2">
 					<ul class="nav flex-column nav-pills ">

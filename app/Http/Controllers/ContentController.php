@@ -10,7 +10,7 @@ class ContentController extends Controller
 {
     public function showAllContents()
     {
-        $contents = Content::get();
+        $contents = Content::orderBy('id', 'desc')->paginate(5);
         return view('manage.contents.contents', compact('contents'));
     }
 

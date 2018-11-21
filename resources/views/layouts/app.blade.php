@@ -16,9 +16,9 @@
 <body>
 	<div id="app">
 		@include('layouts.header')
-		<section id="content">
+		<div id="content">
 			@yield('content')
-		</section>
+		</div>
 		@guest
 			@include('guest.chats.chat-panel')
 		@endguest
@@ -28,6 +28,7 @@
 </body>
 <style>
 #content{
+	margin-top: 62px;
 	min-height: calc(100vh - 62px);
 }
 #navbar{

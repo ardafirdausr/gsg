@@ -10466,7 +10466,7 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(14);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
@@ -44011,8 +44011,7 @@ window.addEventListener('load', function () {
 }, false);
 
 /***/ }),
-/* 13 */,
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -7,14 +7,13 @@
 	<title>Tiket Pertunjukkan</title>
 </head>
 <body>
-	<div class="order-container">
+	<div class="order-container py-md-3">
 		<div class="order-header">
-			<div class="row align-items-center">
-				<div class="title">Tiket Pertunjukkan</div>
-			</div>
+			<div class="title">Tiket Pertunjukkan</div>
 		</div>
 		<div class="order-body">
-			<table class="table table-borderless">
+			<table>
+				<caption>Data Acara</caption>
 				<tbody>
 					<tr>
 						<th scope="row">Nama Acara</th>
@@ -30,8 +29,14 @@
 					</tr>
 				</tbody>
 			</table>
-			<table class="table table-borderless">
+			<hr>
+				<table>
+				<caption>Data Pengunjung</caption>
 				<tbody>
+					<tr>
+						<th scope="row">ID Pengunjung</th>
+						<td>{{$eventOrder->id}}</td>
+					</tr>
 					<tr>
 						<th scope="row">Nama</th>
 						<td>{{$eventOrder->name}}</td>
@@ -52,35 +57,77 @@
 			</table>
 		</div>
 		<div class="order-footer">
-				<small>Nb* Bawalah tiket ini saat acara dan tunjukkan kartu identitas anda</small>
+				<small>Bawalah tiket ini saat acara dan tunjukkan kartu identitas anda</small>
 		</div>
 	</div>
 </body>
-<style>
+<style type="text/css" media="all">
+	* {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-weight:  400px;
+	}
 	.order-container{
-		widows: 100%;
-		height: 100%;
-		padding: 24px;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
+		width: 100%;
+		border: 1px solid #2196f3;
 	}
 	.order-header{
-		align-self: stretch;
-		background-color: #64dd17;
+		background-color: #2196f3;
 		padding: 20px;
 	}
-	.order-header .title{
+	.title{
 		color: #fff;
 		font-size: 36px;
-		margin: auto;
+		width: 100%;
+		text-align: center;
+		font-weight: 200;
+		letter-spacing: 2px;
 	}
 	.order-body{
+		padding: 20px;
+	}
+	.order-body table{
 		width: 100%;
+		margin: 20px;
+		/* border-collapse: collapse; */
+	}
+	.order-body caption{
+		font-weight: 500;
+		font-size: 18px;
+		text-align: left;
+		margin-bottom: 20px;
+		letter-spacing: 1px;
+		color: tomato;
+	}
+	.order-body tr{
+		margin: 5px;
+	}
+	.order-body td{
+		color: #7f7f7f;
+	}
+	.order-body th{
+		width: 40%;
+		color: black;
+		border-left: 4px solid #2196f3;
+	}
+	.order-body th, td{
+		padding: 10px;
+	}
+	table tr:nth-child(even) td{
+		background-color: #c3fdff;
+	}
+	table tr:nth-child(odd) td{
+		background-color: #bbdefb;
 	}
 	.order-footer{
+		background-color: #2196f3;
+		padding: 20px;
 		width: 100%;
+		padding: 20px;
+		color: white;
+	}
+	.order-footer::before{
+		content: 'NB*';
+		color: black;
 	}
 </style>
 </html>

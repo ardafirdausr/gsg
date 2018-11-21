@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-md-3">
-	<div class="row">
+<div class="container py-md-3">
+	<div class="row my-md-3">
 		<div class="col-md-4">
 			<img src={{$content->photo}} alt={{$content->title}} width="100%">
 		</div>

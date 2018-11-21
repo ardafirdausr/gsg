@@ -252,6 +252,7 @@
   height: 100%;
   overflow-y: auto;
   border-right: 1px solid #c4c4c4;
+  transition: height 0.4s ease-in-out;
 }
 img{
 	max-width:100%;
@@ -291,13 +292,13 @@ img{
 .chat-people{
   overflow:hidden;
   clear:both;
+  transition: height 0.4s ease;
 }
 .chat-list {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
   cursor: pointer;
-  transition: top 0.5s ease;
   animation: slide-up 0.4s ease;
 }
 .inbox_chat {

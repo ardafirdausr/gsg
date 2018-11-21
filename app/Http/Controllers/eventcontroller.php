@@ -11,7 +11,7 @@ class EventController extends Controller
 
     public function showAllEvents()
     {
-        $events = Event::all();
+        $events = Event::orderBy('id', 'desc')->paginate(5);
         return view('manage.events.events', compact('events'));
     }
 

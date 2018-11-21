@@ -14,8 +14,8 @@
 		<div class="w-100"></div>
 		<div class="col-md-12 mt-5">
 			<div class="row no-gutters">
-				@foreach($contents as $content)
-				<div class="media col-md-12 my-md-2">
+				@foreach($contents as $idx => $content)
+				<div class="media col-md-12 my-md-2" style="animation: slide-up {{$idx * 0.4}}s ease;">
 						<div class="col-md-4">
 								<img class="align-self-center" src={{$content->photo}} width="100%" alt="Gambar {{$content->title}}">
 						</div>
@@ -39,6 +39,8 @@
 				@endforeach
 			</div>
 		</div>
+		<div class="col d-flex justify-content-center my-md-3">
+				{{ $contents->links() }}
+		</div>
 	</div>
-
 @endsection

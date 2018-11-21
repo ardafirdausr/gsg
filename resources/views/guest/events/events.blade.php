@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-2">
+<div class="container py-md-3">
 	<div class="row my-md-5">
 		@if(count($events) > 0)
-			@foreach($events as $event)
-			<div class="col-md-3 my-md-3">
+			@foreach($events as $idx => $event)
+			<div class="col-md-3 my-md-3" style="animation: slide-up {{$idx * 0.3}}s ease;">
 				<div class="card bg-white rounded shadow" width="100%">
 					<img class="card-img-top" src={{$event->photo}} alt="Card image cap">
 					<div class="card-body">
@@ -31,6 +31,9 @@
 				Tidak ada event
 			</div>
 		@endif
+		<div class="col-md-12 d-flex justify-content-center my-md-5">
+			{{ $events->links() }}
+		</div>
 	</div>
 </div>
 <style>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-		<div class="row">
+	<div class="container py-md-3">
+		<div class="row my-md-5">
 			<div class="col-md-12 my-md-2 rounded">
 				<div class="alert alert-success" role="alert">
 					<h4 class="alert-heading">Pemesanan Tiket Berhasil!</h4>
@@ -20,7 +20,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-md-12 rounded shadow">
+			<div class="col-md-12 rounded shadow p-md-3">
 				@include('guest.events.orderTemplate', compact('eventOrder'))
 			</div>
 		</div>

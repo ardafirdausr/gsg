@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-	<div class="row justify-content-around">
-		<div class="col-md-8 p-md-5 card bg-white rounded shadow">
+<div class="container py-md-3">
+	<div class="row justify-content-around my-md-5">
+		<div class="col-md-8 p-md-5 card bg-white rounded shadow" style="animation: slide-right 0.6s ease;">
 			<div class="h4 mb-4">Identitas Penonton</div>
 			<form method="POST" action={{route('guest.store-event-order', ['id' => $event->id])}} class="needs-validation" novalidate enctype="multipart/form-data">
 				{{ csrf_field() }}
@@ -64,7 +64,7 @@
 			</form>
 		</div>
 		<div class="col-md-4">
-			<div class="card bg-white rounded shadow" width="100%">
+			<div class="card bg-white rounded shadow" width="100%" style="animation: slide-left 0.6s ease;">
 				<img class="card-img-top" src={{$event->photo}} alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title" id="card-event-title">{{$event->title}}</h5>

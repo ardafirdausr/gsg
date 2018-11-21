@@ -15,8 +15,8 @@
 		<div class="w-100"></div>
 		<div class="col-md-12 mt-5">
 			<div class="row no-gutters">
-				@foreach($events as $event)
-				<div class="media col-md-12 my-md-2">
+				@foreach($events as $idx => $event)
+				<div class="media col-md-12 my-md-2" id="event-{{$event->id}}" style="animation: slide-up {{$idx * 0.5}}s ease;">
 					<div class="col-md-4">
 							<img class="align-self-center" src={{$event->photo}} width="100%" alt="Gambar {{$event->title}}">
 					</div>
@@ -32,6 +32,9 @@
 						<p>{{$event->description}}</p>
 					</div>
 					<div class="col-md-2">
+						{{-- <button type="submit" class="btn btn-danger btn-sm" onclick="deleteEvent({{$event->id}})">
+								Delete
+						</button> --}}
 						<form action={{ route('manage.events.destroy', ['id' => $event->id, '_method' => 'delete']) }} method="post">
 							{{ csrf_field() }}
 							<button type="submit" class="btn btn-danger btn-sm">
@@ -43,6 +46,28 @@
 				@endforeach
 			</div>
 		</div>
+		<div class="col d-flex justify-content-center my-md-3">
+			{{ $events->links() }}
+		</div>
 	</div>
-
+	<script>
+		// function deleteEvent(id){
+		// 	$.ajax({
+		// 		url: '/manage/events/' + id,
+		// 		method: 'POST',
+		// 		headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     },
+		// 		data: {
+		// 			"_method": 'DELETE'
+		// 		},
+		// 		success: function(){
+		// 			$('#event-' + id).detach();
+		// 		},
+		// 		error: function(){
+		// 			alert();
+		// 		}
+		// 	});
+		// }
+	</script>
 @endsection

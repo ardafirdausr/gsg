@@ -21,11 +21,13 @@ class GuestController extends Controller{
     }
 
     public function showHome(){
-        return view('guest.home');
+        $events = Models\Event::orderBy('id', 'desc')->limit(4)->get();
+        $contents = Models\Content::orderBy('id', 'desc')->limit(4)->get();
+        return view('guest.home', compact('events', 'contents'));
     }
 
     public function showAllContents(){
-        $contents = Models\Content::all();
+        $contents = Models\Content::orderBy('id', 'desc')->paginate(8);
         return view('guest.contents.contents', compact('contents'));
     }
 
@@ -35,7 +37,7 @@ class GuestController extends Controller{
     }
 
     public function showAllEvents(){
-        $events = Models\Event::all();
+        $events = Models\Event::orderBy('id', 'desc')->paginate(8);
         return view('guest.events.events', compact('events'));
     }
 

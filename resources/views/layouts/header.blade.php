@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-expand-md" style="z-index: 1">
+<nav id="navbar" class="fixed-top navbar navbar-expand-md navbar-light bg-light ">
 		<div class="container">
 			{{-- Brand --}}
 			<a class="navbar-brand" href={{route('guest.home')}}>
@@ -11,21 +11,23 @@
 			</button>
 
 			{{-- Navigation Item --}}
-			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
 				<ul class="navbar-nav">
 					@guest
-					<li class="nav-item {{ Route::currentRouteName() === 'guest.home' ? 'active' : '' }}" >
+					<li class="nav-item {{ Request::is('/home') ? 'active' : '' }}" >
 						<a class="nav-link" href={{ route('guest.home')}}>Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item {{ Route::currentRouteName() === 'guest.contents' ? 'active' : '' }}">
+					<li class="nav-item {{ Request::is('contents') || Request::is('contents/*') ? 'active' : '' }}">
 						<a class="nav-link" href={{ route('guest.contents')}}>Konten<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item {{ Request::is('events') || Request::is('events/*') ? 'active' : '' }}">
 							<a class="nav-link" href={{ route('guest.events')}}>Event<span class="sr-only">(current)</span></a>
 						</li>
 					@else
 					<li class="nav-item">
-						<a class="nav-link" href={{ route('manage.contents.index')}}>Kelola Halaman<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href={{ route('manage.contents.index')}} style="color:#007bff">
+							Kelola Halaman<span class="sr-only">(current)</span>
+						</a>
 					</li>
 					<li>
 						<a class="nav-link" href={{ route('logout')}} style="color: deeppink" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -57,6 +59,15 @@
 			</div>
 		</div>
 </nav>
+<style>
+	.nav-item.active{
+		background-color: #007bff;
+		border-radius: 5px;
+	}
+	.nav-item.active *{
+		color: white !important;
+	}
+</style>
 <script>
 	function logout(){
 		event.preventDefault();

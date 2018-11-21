@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-md-3">
-	<div class="row">
-		<div class="col-md-4">
+<div class="container py-md-3">
+	<div class="row my-md-5">
+		<div class="col-md-4" style="animation: slide-right 0.7s ease;">
 			<img src={{$event->photo}} alt={{$event->title}} width="100%">
 		</div>
 		<div class="col-md-8">
@@ -15,6 +15,7 @@
 			<div id="event-description" class="mb-md-5">{{$event->description}}</div>
 			<a
 				{{$event->capacity - 1 >= 0 ? "" : "disabled"}}
+				id="event-order-button"
 				class="btn btn-block {{$event->capacity - 1 >= 0 ? "btn-primary " : "disabled btn-warning"}}"
 				role="button"
 				href={{route('guest.create-event-order', ['id' => $event->id])}}
@@ -28,9 +29,18 @@
 #event-title{
 	font-size: 30px;
 	font-weight: 60;
+	animation: slide-left 0.7s ease;
 }
 #event-time *{
 	font-size: 0.9rem;
+	animation: slide-left 0.7s ease;
 }
+#event-description{
+	animation: slide-left 0.7s ease;
+}
+#event-order-button{
+	animation: slide-up 0.7s ease;
+}
+
 </style>
 @endsection
