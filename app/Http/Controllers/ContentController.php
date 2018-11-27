@@ -8,19 +8,16 @@ use Illuminate\Support\Facades;
 
 class ContentController extends Controller
 {
-    public function showAllContents()
-    {
+    public function showAllContents(){
         $contents = Content::orderBy('id', 'desc')->paginate(5);
-        return view('manage.contents.contents', compact('contents'));
+        return view('manage.contents.contents-management', compact('contents'));
     }
 
-    public function showCreateContentForm()
-    {
+    public function showCreateContentForm(){
         return view('manage.contents.create-content-form');
     }
 
-    public function storeContent(Request $request)
-    {
+    public function storeContent(Request $request){
         // $validatedRequest = $request->validate([
         //     'title' => 'required|string',
         //     'creator' => 'required|string',
@@ -46,8 +43,7 @@ class ContentController extends Controller
         return redirect()->route('manage.contents.index');
     }
 
-    public function destroyContent($id)
-    {
+    public function destroyContent($id){
         Content::find($id)->delete();
         return redirect()->route('manage.contents.index');
     }

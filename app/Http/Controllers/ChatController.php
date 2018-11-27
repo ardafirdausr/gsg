@@ -17,7 +17,7 @@ class ChatController extends Controller
         //group by harus ada selectnya
         $guestChats = Chat::whereIn('id', Chat::select(DB::raw('MAX(id) as id'))->where('to', "=", 'admin@mail.com')->groupBy('from')->get())->get();
         $gusetChatsCount = Chat::select('from', DB::raw('COUNT(*) as unreaded'))->where('readed', '0')->groupBy('from')->get();
-        return view('manage.chats.chats', compact('guestChats', 'gusetChatsCount'));
+        return view('manage.chats.chats-management', compact('guestChats', 'gusetChatsCount'));
     }
 
     public function sendChat(Request $request){

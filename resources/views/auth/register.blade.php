@@ -7,7 +7,7 @@
 			<div class="my-md-3 ml-md-3 h4 ">Register</div>
 			<form class="form-horizontal" method="POST" action="{{ route('register') }}">
 					{{ csrf_field() }}
-				<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+				<div class="form-group{{ $errors->has('name') ? ' was-validated' : '' }}">
 					<label for="name" class="col-md-4 control-label">Name</label>
 					<div class="col-md-12">
 						<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -19,7 +19,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+				<div class="form-group{{ $errors->has('username') ? ' was-validated' : '' }}">
 					<label for="email" class="col-md-4 control-label">Username</label>
 
 					<div class="col-md-12">
@@ -32,7 +32,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+				<div class="form-group{{ $errors->has('email') ? ' was-validated' : '' }}">
 					<label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
 					<div class="col-md-12">
@@ -45,7 +45,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+				<div class="form-group{{ $errors->has('password') ? ' was-validated' : '' }}">
 					<label for="password" class="col-md-4 control-label">Password</label>
 
 					<div class="col-md-12">

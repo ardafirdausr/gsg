@@ -19,9 +19,12 @@
 						id="chat-message"
 						required></textarea>
 						<div id="chat-send-container" class="chat-send-container">
-							<button id="chat-send-image" class="chat-send-button" type="button">
+							{{-- <button id="chat-send-image" class="chat-send-button" type="button">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 52.623 52.623" style="enable-background:new 0 0 52.623 52.623;" xml:space="preserve"><path d="M14.371,52.623c-3.535,0-6.849-1.368-9.332-3.852s-3.852-5.797-3.852-9.332c0-3.534,1.368-6.848,3.852-9.331L32.333,2.814  c3.905-3.903,9.973-3.728,14.114,0.413c4.141,4.141,4.319,10.208,0.414,14.114L21.22,42.982c-2.407,2.407-6.327,2.411-8.738,0  c-2.409-2.41-2.408-6.33,0-8.738l17.369-17.369c0.586-0.586,1.535-0.586,2.121,0c0.586,0.586,0.586,1.535,0,2.121L14.603,36.365  c-1.239,1.239-1.239,3.256,0,4.496c1.241,1.239,3.257,1.237,4.496,0L44.74,15.22c2.695-2.696,2.518-6.94-0.414-9.872  s-7.176-3.109-9.872-0.413L7.16,32.229c-1.917,1.917-2.973,4.478-2.973,7.21c0,2.733,1.056,5.294,2.973,7.211  s4.478,2.973,7.211,2.973c2.732,0,5.293-1.056,7.21-2.973l27.294-27.294c0.586-0.586,1.535-0.586,2.121,0s0.586,1.535,0,2.121  L23.702,48.771C21.219,51.254,17.905,52.623,14.371,52.623z"/></svg>
-							</button>
+							</button> --}}
+							<span id="chat-text-counter">
+								0/255
+							</span>
 							<button id="chat-send-message" class="chat-send-button" type="button" onclick="sendMessage(event)">
 								<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve"> <g><g id="send"><polygon points="0,497.25 535.5,267.75 0,38.25 0,216.75 382.5,267.75 0,318.75 		"/></g></g></svg>
 							</button>
@@ -31,15 +34,21 @@
 		</div>
 	</div>
 	<div id="chat-panel-identification" class="chat-panel-identification shadow">
-		<form>
+		<form class="needs-validation" novalidate>
 			<p class="text-center"><small><b>Sebelum Memulai Chat, Masukkan Identitas Anda</b></small></p>
 			<div class="form-group">
 				<small><label for="chat-email">Email</label></small>
-				<input type="email" class="form-control form-control-sm" id="chat-email" placeholder="Masukkan Email">
+				<input type="email" class="form-control form-control-sm is-valid" id="chat-email" placeholder="Masukkan Email">
+				<div class="invalid-feedback">
+					Email tidak boleh kosong
+				</div>
 			</div>
 			<div class="form-group">
 				<small><label for="chat-name">Nama</label></small>
-				<input type="text" class="form-control form-control-sm" id="chat-name" placeholder="Masukkan Nama Anda">
+				<input type="text" class="form-control form-control-sm is-valid" id="chat-name" placeholder="Masukkan Nama Anda">
+				<div class="invalid-feedback">
+					Nama tidak boleh kosong
+				</div>
 			</div>
 			<button
 				id="btn-user-chat-identification"
@@ -86,29 +95,33 @@
 
 	function sendMessage(event){
 		event.preventDefault();
-		var message = $('#chat-message').val();
-		var tempId = new Date().getTime();
-		var chat = { id: tempId, message: message };
-		$('#message-history').append(getOutgoingChatTemplate(chat));
-		$("#message-history").animate({ scrollTop: document.getElementById('message-history').scrollHeight }, "slow");
-		$('#message-' + tempId).fadeIn(200);
-		$('#chat-message').val('');
-		$.ajax({
-			url: '/chats/send',
-			method: 'POST',
-			data: {
-				'to': 'admin@mail.com',
-				'message': message,
-			},
-			success: function(chat){
-				$('#message-' + tempId).replaceWith(getOutgoingChatTemplate(chat));
-				$('#message-' + chat.id).fadeIn(200);
-			},
-			error: function(e){
-				alert('error');
-				console.log(e);
-			}
-		});
+		var textLength = $('#chat-message').val().length;
+		if(textLength > 0){
+			var message = $('#chat-message').val();
+			var tempId = new Date().getTime();
+			var chat = { id: tempId, message: message };
+			$('#chat-text-counter').html("0/255");
+			$('#message-history').append(getOutgoingChatTemplate(chat));
+			$("#message-history").animate({ scrollTop: document.getElementById('message-history').scrollHeight }, "slow");
+			$('#message-' + tempId).fadeIn(200);
+			$('#chat-message').val('');
+			$.ajax({
+				url: '/chats/send',
+				method: 'POST',
+				data: {
+					'to': 'admin@mail.com',
+					'message': message,
+				},
+				success: function(chat){
+					$('#message-' + tempId).replaceWith(getOutgoingChatTemplate(chat));
+					$('#message-' + chat.id).fadeIn(200);
+				},
+				error: function(e){
+					alert('error');
+					console.log(e);
+				}
+			});
+		}
 	}
 
 	function openChatPanel(){
@@ -141,6 +154,10 @@
 		});
 	}
 
+	$('#chat-message').on('keyup', function(){
+		var textLength = $('#chat-message').val().length;
+		$('#chat-text-counter').html(textLength + "/255");
+	});
 
 	Echo.channel('chat.{{Session::get("email")}}')
 		.listen('.sendChat', function(data){
@@ -333,7 +350,7 @@
 	.chat-send-container{
 		width: 100%;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-between;
 		align-items: center;
 		margin-top: 4px;
 	}
@@ -344,6 +361,9 @@
 		width: 30px;
 		height: 30px;
 		border: none;
+	}
+	#chat-text-counter{
+		color: #0079fa;
 	}
 	.chat-send-container svg{
 		fill: #05728f;

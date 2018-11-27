@@ -16,6 +16,11 @@ use App\Events\SendChatToAdmin;
 
 Route::post('/chats/send', ['as' => 'send-chat', 'uses' => 'ChatController@sendChat']);
 
+// Route::group(['as' => 'auth'], function(){
+//     Route::get('/login', ['as' => 'showLoginForm', 'uses' => 'LoginController@showLoginForm']);
+//     Route::post('/login', ['as' => 'login', 'uses' => 'LoginController@login']);
+// });
+
 Route::group(['as' => 'guest.'], function(){
     Route::get('/', ['as' => 'home', 'uses' => 'GuestController@showHome']);
     Route::get('/contents', ['as' => 'contents', 'uses' => 'GuestController@showAllContents']);

@@ -43997,7 +43997,9 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-window.addEventListener('load', function () {
+window.addEventListener('load', validateForm, false);
+
+function validateForm() {
 	var forms = document.getElementsByClassName('needs-validation');
 	var validation = Array.prototype.filter.call(forms, function (form) {
 		form.addEventListener('submit', function (event) {
@@ -44008,7 +44010,7 @@ window.addEventListener('load', function () {
 			form.classList.add('was-validated');
 		}, false);
 	});
-}, false);
+}
 
 /***/ }),
 /* 13 */

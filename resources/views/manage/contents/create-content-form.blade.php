@@ -7,7 +7,7 @@
 		<form method="POST" action={{route('manage.contents.store')}} class="needs-validation" novalidate enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div class="form-row">
-				<div class="form-group col-md-6 {{ $errors->has('title') ? ' has-error' : '' }}">
+				<div class="form-group col-md-6 {{ $errors->has('title') ? ' was-validated' : '' }}">
 					<label for="title">Nama Karya</label>
 					<input id="title" type="text" class="form-control is-valid" name="title" value="{{ old('title') }}" required autofocus>
 					<div class="invalid-feedback">
@@ -18,7 +18,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group col-md-6 {{ $errors->has('creator') ? ' has-error' : ''}}">
+				<div class="form-group col-md-6 {{ $errors->has('creator') ? ' was-validated' : ''}}">
 					<label for="email">Pembuat Karya</label>
 					<input id="creator" type="text" class="form-control" name="creator" value="{{ old('creator') }}" required>
 					<div class="invalid-feedback">
@@ -30,7 +30,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('date_created') ? ' has-error' : '' }}">
+			<div class="form-group{{ $errors->has('date_created') ? ' was-validated' : '' }}">
 				<label for="date_created">Tanggal Pembuatan</label>
 				<input id="date_created" type="date" class="form-control" name="date_created" value="{{ old('date_created') }}" required>
 				<div class="invalid-feedback">
@@ -41,7 +41,7 @@
 					@endif
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+			<div class="form-group{{ $errors->has('description') ? ' was-validated' : '' }}">
 				<label for="description">Deskripsi Karya</label>
 				<textarea id="description" class="form-control" aria-label="With textarea" name="description" required></textarea>
 				<div class="invalid-feedback">
@@ -55,7 +55,7 @@
 			<div class="form-group">
 				<label for="inputPhoto">Foto Karya</label>
 				<div id="uploadPhoto">
-					<div class="custom-file {{ $errors->has('photo') ? ' has-error' : '' }} mt-md-3">
+					<div class="custom-file {{ $errors->has('photo') ? ' was-validated' : '' }} mt-md-3">
 						<label  id="filename" class="custom-file-label" for="validatedCustomFile"></label>
 						<input
 							type="file"

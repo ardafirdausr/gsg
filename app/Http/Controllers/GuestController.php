@@ -17,7 +17,15 @@ class GuestController extends Controller{
         return response('connected')
             ->cookie('name', $request->input('name'))
             ->cookie('email', $request->input('email'))
-            ->cookie('chat-connected', true, null, null, null, false, false);
+            ->cookie(
+                'chat-connected', // key
+                true, // value
+                null, // time
+                '/', // path
+                null, // domain
+                false, //secure
+                false // http-only
+            );
     }
 
     public function showHome(){
@@ -65,12 +73,12 @@ class GuestController extends Controller{
     }
 
     public function storeEventOrder(Request $request, $id){
-        $validatedRequest = $request->validate([
-            'name' => 'required|string|regex:/^[a-zA-Z ]+$/',
-            'phone' => 'required|string|regex:/^[0-9\+\-\(\) ]+$/',
-            'email' => 'required|string|regex:/^[a-zA-Z0-9\_\-]+@[a-zA-Z0-9\-]+[\.a-zA-Z0-9]+$/',
-            'identity' => 'required|string|regex:/^[0-9]+$/'
-        ]);
+        // $validatedRequest = $request->validate([
+        //     'name' => 'required|string|regex:/^[a-zA-Z ]+$/',
+        //     'phone' => 'required|string|regex:/^[0-9\+\-\(\) ]+$/',
+        //     'email' => 'required|string|regex:/^[a-zA-Z0-9\_\-]+@[a-zA-Z0-9\-]+[\.a-zA-Z0-9]+$/',
+        //     'identity' => 'required|string|regex:/^[0-9]+$/'
+        // ]);
         $event = Models\Event::find($id);
         if($event->capacity - 1 >= 0){
             Facades\DB::beginTransaction();
@@ -88,10 +96,11 @@ class GuestController extends Controller{
                 return redirect()->route('guest.event-order', compact('encodedOrderId'));
             }
             catch(QueryException $e){
-                $errors = [
-                    'identity' => 'Nomor Identitas sudah terdaftar untuk event ini'
-                ];
                 Facades\DB::rollback();
+                $error = \Illuminate\Validation\ValidationException::withMessages([
+                    'identity' => 'Nomor Identitas sudah terdaftar untuk event ini'
+                 ]);
+                 throw $error;
                 return view('guest.events.create-event-order', compact(['event', 'errors']));
             }
         }

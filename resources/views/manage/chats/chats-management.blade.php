@@ -44,19 +44,29 @@
 						maxlength="255"
             placeholder="Tulis Pesan"
             ></textarea>
-          <button id="chat-send-image" class="chat-send-message" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 52.623 52.623" style="enable-background:new 0 0 52.623 52.623;" xml:space="preserve"><path d="M14.371,52.623c-3.535,0-6.849-1.368-9.332-3.852s-3.852-5.797-3.852-9.332c0-3.534,1.368-6.848,3.852-9.331L32.333,2.814  c3.905-3.903,9.973-3.728,14.114,0.413c4.141,4.141,4.319,10.208,0.414,14.114L21.22,42.982c-2.407,2.407-6.327,2.411-8.738,0  c-2.409-2.41-2.408-6.33,0-8.738l17.369-17.369c0.586-0.586,1.535-0.586,2.121,0c0.586,0.586,0.586,1.535,0,2.121L14.603,36.365  c-1.239,1.239-1.239,3.256,0,4.496c1.241,1.239,3.257,1.237,4.496,0L44.74,15.22c2.695-2.696,2.518-6.94-0.414-9.872  s-7.176-3.109-9.872-0.413L7.16,32.229c-1.917,1.917-2.973,4.478-2.973,7.21c0,2.733,1.056,5.294,2.973,7.211  s4.478,2.973,7.211,2.973c2.732,0,5.293-1.056,7.21-2.973l27.294-27.294c0.586-0.586,1.535-0.586,2.121,0s0.586,1.535,0,2.121  L23.702,48.771C21.219,51.254,17.905,52.623,14.371,52.623z"/></svg>
-          </button>
-          <button id="chat-send-message" class="chat-send-message" type="button" onclick="sendMessage()">
-              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve"> <g><g id="send"><polygon points="0,497.25 535.5,267.75 0,38.25 0,216.75 382.5,267.75 0,318.75 		"/></g></g></svg>
-          </button>
+          <div class="activity-container d-flex flex-column justify-content-between">
+            <div class="button-container">
+              {{-- <button id="chat-send-image" class="chat-send-message" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 52.623 52.623" style="enable-background:new 0 0 52.623 52.623;" xml:space="preserve"><path d="M14.371,52.623c-3.535,0-6.849-1.368-9.332-3.852s-3.852-5.797-3.852-9.332c0-3.534,1.368-6.848,3.852-9.331L32.333,2.814  c3.905-3.903,9.973-3.728,14.114,0.413c4.141,4.141,4.319,10.208,0.414,14.114L21.22,42.982c-2.407,2.407-6.327,2.411-8.738,0  c-2.409-2.41-2.408-6.33,0-8.738l17.369-17.369c0.586-0.586,1.535-0.586,2.121,0c0.586,0.586,0.586,1.535,0,2.121L14.603,36.365  c-1.239,1.239-1.239,3.256,0,4.496c1.241,1.239,3.257,1.237,4.496,0L44.74,15.22c2.695-2.696,2.518-6.94-0.414-9.872  s-7.176-3.109-9.872-0.413L7.16,32.229c-1.917,1.917-2.973,4.478-2.973,7.21c0,2.733,1.056,5.294,2.973,7.211  s4.478,2.973,7.211,2.973c2.732,0,5.293-1.056,7.21-2.973l27.294-27.294c0.586-0.586,1.535-0.586,2.121,0s0.586,1.535,0,2.121  L23.702,48.771C21.219,51.254,17.905,52.623,14.371,52.623z"/></svg>
+              </button> --}}
+              <button id="chat-send-message" class="chat-send-message" type="button" onclick="sendMessage()">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve"> <g><g id="send"><polygon points="0,497.25 535.5,267.75 0,38.25 0,216.75 382.5,267.75 0,318.75 		"/></g></g></svg>
+              </button>
+            </div>
+            <span id="chat-text-counter">
+              0/255
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <script>
-
+    $('#chat-message').on('keydown', function(){
+      var textLength = $('#chat-message').val().length;
+      $('#chat-text-counter').html(textLength + "/255");
+    });
     function getUserListReceiveTemplate(chat){
       return `
       <div class="chat-list" id="${chat.from}" onclick="selectChat(this)">
@@ -180,32 +190,36 @@
 
     function sendMessage(){
       event.preventDefault();
-      var emailGuest = $('.active_chat').attr('id');
-      var tempId = new Date().getTime();
-      var message = $('#chat-message').val();
-      var chat = { message: message, id: tempId };
-      var userListElement = document.getElementById(emailGuest);
-      $('#msg_history').append(getOutgoingChatTemplate(chat));
-      $('#message-' + chat.id).fadeIn(200);
-      $("#msg_history").animate({ scrollTop: document.getElementById('msg_history').scrollHeight }, "slow");
-      $('#chat-message').val('');
-      $.ajax({
-        url: '/chats/send',
-        method: 'POST',
-        data: {
-          'to': emailGuest,
-          'message': message,
-        },
-        success: function(chat){
-          $(userListElement).html(getUserListContentSendTemplate(chat));
-          $('#message-' + tempId).replaceWith(getOutgoingChatTemplate(chat));
-          $('#message-' + chat.id).fadeIn(200);
-        },
-        error: function(e){
-          alert('error');
-          console.log(e);
-        }
-      });
+      var textLength = $('#chat-message').val().length;
+      if(textLength > 0){
+        var emailGuest = $('.active_chat').attr('id');
+        var tempId = new Date().getTime();
+        var message = $('#chat-message').val();
+        var chat = { message: message, id: tempId };
+        var userListElement = document.getElementById(emailGuest);
+        $('#chat-text-counter').html("0/255");
+        $('#msg_history').append(getOutgoingChatTemplate(chat));
+        $('#message-' + chat.id).fadeIn(200);
+        $("#msg_history").animate({ scrollTop: document.getElementById('msg_history').scrollHeight }, "slow");
+        $('#chat-message').val('');
+        $.ajax({
+          url: '/chats/send',
+          method: 'POST',
+          data: {
+            'to': emailGuest,
+            'message': message,
+          },
+          success: function(chat){
+            $(userListElement).html(getUserListContentSendTemplate(chat));
+            $('#message-' + tempId).replaceWith(getOutgoingChatTemplate(chat));
+            $('#message-' + chat.id).fadeIn(200);
+          },
+          error: function(e){
+            alert('error');
+            console.log(e);
+          }
+        });
+      }
     }
 
     Echo.channel('chat.{{Session::get("email")}}')
@@ -320,7 +334,7 @@ img{
   display: inline-block;
   padding: 0 0 0 10px;
   vertical-align: top;
-  width: 92%;
+  width: 65%;
  }
  .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
@@ -373,6 +387,8 @@ img{
 }
 .chat-message {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  width: 80%;
+  margin-right: 10px;
   border: medium none;
   color: #4c4c4c;
   font-size: 15px;
@@ -382,7 +398,7 @@ img{
 .type-container {
   border-top: 1px solid #c4c4c4;
   position: relative;
-  }
+}
 .chat-send-message {
   /* background: #05728f none repeat scroll 0 0; */
   /* border-radius: 50%;  */
@@ -390,10 +406,10 @@ img{
   border: medium none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 16px;
   /* position: absolute;
   right: 0; */
-  width: 33px;
+  width: 32px;
 }
 .chat-send-message svg{
   fill: #05728f;
@@ -410,6 +426,10 @@ img{
  transform: translate(-50%, -50%);
   color: #a6a6a6;
   font-size: 16px;
+}
+#chat-text-counter{
+  color: #0079fa;
+  margin-top: 5px;
 }
 .unread{
   visibility: hidden;

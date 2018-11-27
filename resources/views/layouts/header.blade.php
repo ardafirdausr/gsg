@@ -30,12 +30,12 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link" href={{ route('logout')}} style="color: deeppink" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+						{{-- <a class="nav-link" href={{ route('logout')}} style="color: deeppink" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+							Logout
+						</a> --}}
+						<a class="nav-link" href={{ route('logout')}} style="color: deeppink" data-toggle="modal" data-target="#modal-logout">
 							Logout
 						</a>
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-								{{ csrf_field() }}
-						</form>
 					</li>
 					{{-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,6 +59,30 @@
 			</div>
 		</div>
 </nav>
+<div class="modal" tabindex="-1" role="dialog" id="modal-logout">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Logout</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p id="modal-text">Apa Anda yakin untuk logout dari sistem ?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST">
+						{{ csrf_field() }}
+						<button type="submit" class="btn btn-danger">
+								Ya
+						</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <style>
 	.nav-item.active{
 		background-color: #007bff;

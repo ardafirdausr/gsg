@@ -8,9 +8,9 @@
 			<form method="POST" action={{route('guest.store-event-order', ['id' => $event->id])}} class="needs-validation" novalidate enctype="multipart/form-data">
 				{{ csrf_field() }}
 				<div class="form-row">
-					<div class="form-group col-md-6 {{ $errors->has('name') ? 'was-validated' : '' }}">
+					<div class="form-group col-md-6">
 						<label for="name">Nama</label>
-						<input id="name" type="text" class="form-control is-valid" name="name" value="{{ old('name') }}" required autofocus>
+						<input id="name" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 						<div class="invalid-feedback">
 							@if ($errors->has('name'))
 								{{ $errors->first('name') }}
@@ -19,9 +19,9 @@
 							@endif
 						</div>
 					</div>
-					<div class="form-group col-md-6 {{ $errors->has('phone') ? 'was-validated' : ''}}">
+					<div class="form-group col-md-6">
 						<label for="email">Nomor Telepon</label>
-						<input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
+						<input id="phone" type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : ''}}" name="phone" value="{{ old('phone') }}" required>
 						<div class="invalid-feedback">
 							@if ($errors->has('phone'))
 								{{ $errors->first('phone') }}
@@ -31,9 +31,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group{{ $errors->has('email') ? 'was-validated' : '' }}">
+				<div class="form-group">
 					<label for="email">Email</label>
-					<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+					<input id="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 					<div class="invalid-feedback">
 						@if ($errors->has('email'))
 							{{ $errors->first('email') }}
@@ -42,9 +42,9 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group{{ $errors->has('identity') ? 'was-validated' : '' }}">
+				<div class="form-group">
 					<label for="identity">Nomor Identitas</label>
-					<input id="identity" type="text" class="form-control" name="identity" value="{{ old('identity') }}" required>
+					<input id="identity" type="text" class="form-control {{ $errors->has('identity') ? 'is-invalid' : '' }}" name="identity" value="{{ old('identity') }}" required>
 					<div class="invalid-feedback">
 						@if ($errors->has('identity'))
 							{{ $errors->first('identity') }}

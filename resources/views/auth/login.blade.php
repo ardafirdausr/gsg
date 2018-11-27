@@ -5,28 +5,36 @@
 	<div class="row w-100 h-100 justify-content-center align-items-center content-container" style="animation: slide-up 0.7s ease;">
 		<div class="col-md-4 rounded shadow">
 			<div class="my-md-3 ml-md-3 h4 ">Login</div>
-			<form class="form-horizontal" method="POST" action="{{ route('login') }} ">
+			<form class="form-horizontal needs-validation" novalidate method="POST" action="{{ route('login') }} ">
 				{{ csrf_field() }}
 				<div class="form-group">
 					<label for="email" class="col-md-4 control-label">E-Mail Address</label>
 					<div class="col-md-12">
 						<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-						@if ($errors->has('email'))
-							<div class="invalid-feedback">
-								{{ $errors->first('email') }}
-							</div>
-						@endif
+						<div class="invalid-feedback">
+							@if ($errors->has('email'))
+								<div class="invalid-feedback">
+									{{ $errors->first('email') }}
+								</div>
+							@else
+								Email tidak boleh kosong
+							@endif
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="password" class="col-md-4 control-label">Password</label>
 					<div class="col-md-12">
 						<input id="password" type="password" class="form-control" name="password" required>
-						@if ($errors->has('password'))
-							<div class="invalid-feedback">
-									{{ $errors->first('password') }}
-							</div>
-						@endif
+						<div class="invalid-feedback">
+							@if ($errors->has('password'))
+								<div class="invalid-feedback">
+										{{ $errors->first('password') }}
+								</div>
+							@else
+								Email tidak boleh kosong
+							@endif
+						</div>
 					</div>
 				</div>
 				{{-- <div class="form-group">

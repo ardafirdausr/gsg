@@ -7,7 +7,7 @@
 		<form method="POST" action={{route('manage.events.store')}} class="needs-validation" novalidate enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div class="form-row">
-				<div class="form-group col-md-10 {{ $errors->has('title') ? ' has-error' : '' }}">
+				<div class="form-group col-md-10 {{ $errors->has('title') ? ' was-validated' : '' }}">
 					<label for="title">Nama event</label>
 					<input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required>
 					<div class="invalid-feedback">
@@ -18,7 +18,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group col-md-2{{ $errors->has('capacity') ? ' has-error' : '' }}">
+				<div class="form-group col-md-2{{ $errors->has('capacity') ? ' was-validated' : '' }}">
 					<label for="capacity">Kapasitas</label>
 					<input id="capacity" type="number" class="form-control" name="capacity" value="{{ old('capacity') }}" min=1 required>
 					<div class="invalid-feedback">
@@ -30,19 +30,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-				<label for="location">Tempat event</label>
-				<input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
-				<div class="invalid-feedback">
-					@if ($errors->has('location'))
-						{{ $errors->first('location') }}
-					@else
-						Tempat event tidak boleh kosong
-					@endif
-				</div>
-			</div>
 			<div class="form-row">
-				<div class="form-group col-md-6 {{ $errors->has('date') ? ' has-error' : '' }}">
+				<div class="form-group col-md-6 {{ $errors->has('date') ? ' was-validated' : '' }}">
 					<label for="date">Tanggal</label>
 					<input id="date" type="date" class="form-control is-valid" name="date" value="{{ old('date') }}" required autofocus>
 					<div class="invalid-feedback">
@@ -53,7 +42,7 @@
 						@endif
 					</div>
 				</div>
-				<div class="form-group col-md-6 {{ $errors->has('time') ? ' has-error' : ''}}">
+				<div class="form-group col-md-6 {{ $errors->has('time') ? ' was-validated' : ''}}">
 					<label for="email">Waktu</label>
 					<input id="time" type="time" class="form-control" name="time" value="{{ old('time') }}" required>
 					<div class="invalid-feedback">
@@ -65,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+			<div class="form-group{{ $errors->has('description') ? ' was-validated' : '' }}">
 				<label for="description">Deskripsi Karya</label>
 				<textarea id="description" class="form-control" aria-label="With textarea" name="description" required></textarea>
 				<div class="invalid-feedback">
@@ -79,7 +68,7 @@
 			<div class="form-group">
 				<label for="inputPhoto">Foto Event</label>
 				<div id="uploadPhoto">
-					<div class="custom-file {{ $errors->has('photo') ? ' has-error' : '' }} mt-md-3">
+					<div class="custom-file {{ $errors->has('photo') ? ' was-validated' : '' }} mt-md-3">
 						<label  id="filename" class="custom-file-label" for="validatedCustomFile"></label>
 						<input type="file" class="custom-file-input" id="photo" name="photo" required>
 						<div class="invalid-feedback">

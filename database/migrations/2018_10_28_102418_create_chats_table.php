@@ -18,8 +18,7 @@ class CreateChatsTable extends Migration
             $table->string('name');
             $table->string('from');
             $table->string('to');
-            $table->string('message')->nullable();
-            $table->string('image')->nullable();
+            $table->string('message', 255);
             $table->boolean('readed')->default(false);
             $table->dateTime('sent_at');
         });
