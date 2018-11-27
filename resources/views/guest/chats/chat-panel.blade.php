@@ -34,31 +34,33 @@
 		</div>
 	</div>
 	<div id="chat-panel-identification" class="chat-panel-identification shadow">
-		<form class="needs-validation" novalidate>
+		<form id="form-connect" class="needs-validation" novalidate>
 			<p class="text-center"><small><b>Sebelum Memulai Chat, Masukkan Identitas Anda</b></small></p>
 			<div class="form-group">
 				<small><label for="chat-email">Email</label></small>
-				<input type="email" class="form-control form-control-sm is-valid" id="chat-email" placeholder="Masukkan Email">
+				<input type="email" class="form-control form-control-sm" id="chat-email" placeholder="Masukkan Email" required>
 				<div class="invalid-feedback">
 					Email tidak boleh kosong
 				</div>
 			</div>
 			<div class="form-group">
 				<small><label for="chat-name">Nama</label></small>
-				<input type="text" class="form-control form-control-sm is-valid" id="chat-name" placeholder="Masukkan Nama Anda">
+				<input type="text" class="form-control form-control-sm" id="chat-name" placeholder="Masukkan Nama Anda" required>
 				<div class="invalid-feedback">
 					Nama tidak boleh kosong
 				</div>
 			</div>
-			<button
-				id="btn-user-chat-identification"
-				type="submit"
-				class="btn btn-primary btn-block"
-				onclick="submitIdentification(event)"
-				data-loading-text="Menyambungkan..."
-				>
-				Submit
-			</button>
+			<div class="form-group mt-md-4">
+					<button
+						id="btn-user-chat-identification"
+						type="submit"
+						class="btn btn-primary btn-block"
+						onclick="submitIdentification(event)"
+						data-loading-text="Menyambungkan..."
+						>
+					Submit
+				</button>
+			</div>
 		</form>
 	</div>
 	<div id="chat-panel-button" class="chat-panel-button shadow" onclick="openChatPanel()">
@@ -135,26 +137,33 @@
 
 	function submitIdentification(eventevent){
 		event.preventDefault();
-		$.ajax({
-			url: '/chats/connect',
-			method: 'POST',
-			data: {
-				'name': $('#chat-name').val(),
-				'email': $('#chat-email').val()
-			},
-			success: function(s){
-				localStorage.setItem('chat-connected', getCookie('chat-connected'));
-				$('#chat-panel-button').click();
-				$('#chat-panel-identification').fadeOut(200);
-			},
-			error: function(e){
-				alert('error');
-				console.log(e);
-			},
-		});
+		var form = document.getElementById('form-connect');
+		var valid = form.checkValidity();
+		if(valid){
+			$.ajax({
+				url: '/chats/connect',
+				method: 'POST',
+				data: {
+					'name': $('#chat-name').val(),
+					'email': $('#chat-email').val()
+				},
+				success: function(s){
+					localStorage.setItem('chat-connected', getCookie('chat-connected'));
+					$('#chat-panel-button').click();
+					$('#chat-panel-identification').fadeOut(200);
+				},
+				error: function(e){
+					alert('error');
+					console.log(e);
+				},
+			});
+		}
+		else{
+			form.classList.add('was-validated');
+		}
 	}
 
-	$('#chat-message').on('keyup', function(){
+	$('#chat-message').on('keydown', function(){
 		var textLength = $('#chat-message').val().length;
 		$('#chat-text-counter').html(textLength + "/255");
 	});
