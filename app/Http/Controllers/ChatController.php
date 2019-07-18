@@ -21,38 +21,19 @@ class ChatController extends Controller
     }
 
     public function sendChat(Request $request){
-        // $validRequest = Validator::make($request->only(
-        //     ['name', 'from', 'to', 'message', 'image']), [
-        //         'name' => 'string|required',
-        //         'from' => 'string|email|required'
-        // ]);
         $chat = new Chat;
         $chat->name = session('name');
         $chat->from = session('email');
         $chat->to = $request->input('to');
         $chat->message = $request->input('message');
-        $chat->image = $request->input('image');
         $chat->save();
-        if($chat){
-            $ev = event(new Events\SendChat($chat));
-            return $chat;
-        }
-        return 'chat failed to send';
+        $ev = event(new Events\SendChat($chat));
+        return $chat;
     }
 
     public function getChatByEmail(Request $request, $email){
-        DB::beginTransaction();
-        try{
-            $read = Chat::where('readed', false)
-                ->where('from', $email)
-                ->update(['readed' => true]);
-            $chats = Chat::orderBy('id', 'desc')->where('from', $email)->orWhere('to', $email)->get();
-            if(!!$read && !!$chats)
-            DB::commit();
-            return $chats;
-        }
-        catch(Error $e){
-            return $e;
-        }
+        $read = Chat::where('readed', false)->where('from', $email)->update(['readed' => true]);
+        $chats = Chat::orderBy('id', 'desc')->where('from', $email)->orWhere('to', $email)->get();
+        return $chats;
     }
 }

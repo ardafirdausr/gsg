@@ -56,7 +56,7 @@
 			</div>
 			<div class="form-group{{ $errors->has('description') ? ' was-validated' : '' }}">
 				<label for="description">Deskripsi Karya</label>
-				<textarea id="description" class="form-control" aria-label="With textarea" name="description" required></textarea>
+				<textarea id="description" class="form-control" aria-label="With textarea" name="description" required>{{ old('description') }}</textarea>
 				<div class="invalid-feedback">
 					@if ($errors->has('description'))
 						{{ $errors->first('description') }}
@@ -70,7 +70,7 @@
 				<div id="uploadPhoto">
 					<div class="custom-file {{ $errors->has('photo') ? ' was-validated' : '' }} mt-md-3">
 						<label  id="filename" class="custom-file-label" for="validatedCustomFile"></label>
-						<input type="file" class="custom-file-input" id="photo" name="photo" required>
+						<input type="file" class="custom-file-input" id="photo" name="photo" required value={{old('photo')}}>
 						<div class="invalid-feedback">
 							@if ($errors->has('photo'))
 							{{ $errors->first('photo') }}

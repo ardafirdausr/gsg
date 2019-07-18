@@ -27,7 +27,7 @@ Route::group(['as' => 'guest.'], function(){
     Route::get('/contents/{id}', ['as' => 'content', 'uses' => 'GuestController@showContent']);
     Route::get('/events', ['as' => 'events', 'uses' => 'GuestController@showAllEvents']);
     Route::get('/events/{id}', ['as' => 'event', 'uses' => 'GuestController@showEvent']);
-    Route::get('/events/{id}/order', ['as' => 'create-event-order', 'uses' => 'GuestController@createEventOrder']);
+    Route::get('/events/{id}/order', ['as' => 'create-event-order', 'uses' => 'GuestController@showCreateEventOrderForm']);
     Route::post('/events/{id}/order', ['as' => 'store-event-order', 'uses' => 'GuestController@storeEventOrder']);
     Route::get('/events/orders/{encodedOrderId}', ['as' => 'event-order', 'uses' => 'GuestController@showEventOrder']);
     Route::get('/events/orders/ticket/{encodedOrderId}', ['as' => 'ticket-event-order', 'uses' => 'GuestController@showTicketEventOrder']);
